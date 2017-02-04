@@ -175,5 +175,7 @@ angular.module('myApp.mapView', ['ngRoute'])
     }
     if($window.localStorage.getItem('flickr_auth_token') !== null) {
         $rootScope.isLoggedIn = true;
+    } else {
+        $location.path('/home');
     }
 }]);
