@@ -1,0 +1,42 @@
+/* app css stylesheet */
+
+.gutter-content {
+  margin: 50px 0;
+}
+
+.map {
+  height: 350px;
+  margin: 0 auto;
+}
+
+.added-img > img {
+  max-width: 100%;
+}
+
+figure {
+  margin: 0;
+  width: 10%;
+}
+.photos-list {
+  overflow: hidden;
+}
+
+@media only screen and (max-width: 992px) {
+  figure {
+    width: 30.33%;
+  }
+}
+@media only screen and (max-width: 640px) {
+  figure {
+    width: 46%;
+  }
+}
+@media only screen and (max-width: 480px) {
+  figure {
+    width: 95%;
+  }
+}
+
+.text-center {
+  text-align: center;
+}

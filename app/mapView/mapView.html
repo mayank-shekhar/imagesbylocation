@@ -1,0 +1,88 @@
+<div layout="column" data-ng-show="isLoggedIn">
+    <div flex>
+        <md-content layout-padding>
+            <div>
+                <div layout-gt-xs="row">
+                    <md-input-container class="md-block" flex data-ng-class="{'md-input-invalid': error.lat.length}">
+                        <label>Latitude</label>
+                        <input type="number" ng-model="marker.lat" ng-change="changeMarkerPosition(marker.lat, marker.lng)" readonly>
+                        <div class="md-errors-spacer"></div>
+                        <div class="md-input-messages-animation">
+                            <div class="md-input-message-animation">{{error.lat}}</div>
+                        </div>
+                    </md-input-container>
+                    <md-input-container class="md-block" flex data-ng-class="{'md-input-invalid': error.lng.length}">
+                        <label>Longitude</label>
+                        <input type="number" ng-model="marker.lng" ng-change="changeMarkerPosition(marker.lat, marker.lng)" readonly>
+                        <div class="md-errors-spacer"></div>
+                        <div class="md-input-messages-animation">
+                            <div class="md-input-message-animation">{{error.lng}}</div>
+                        </div>
+                    </md-input-container>
+                </div>
+
+                <ng-map center="{{mapCenter}}" zoom="13" on-dragend="mapDragEnd($event)" default-style="false" class="map">
+                    <marker position="{{markerPosition}}"
+                        on-dragend="dragEnd($event)"
+                        draggable="true">
+                    </marker>
+                </ng-map>
+            </div>
+        </md-content>
+    </div>
+    <div flex>
+        <div layout="row" data-ng-show="!loading && photos.length > 0" layout-align="center center" layput-wrap>
+            <pagination flex 
+                pages="pages",
+                steps="5"
+                page-changed="search(marker.lat, marker.lng, page)"
+                current-page="page">
+            </pagination>
+        </div>
+    </div>
+
+    <div flex>
+        <md-content layout-padding>
+            <div ng-show="loading">
+                <div layout="row" layout-align="center center">
+                    <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+                </div>
+            </div>
+            <div ng-hide="loading && photos.length > 0" class="photos-list grid-container" id="grid-list" data-ng-if="!loading" packery>
+                <figure class="added-fig grid-item" ng-repeat="photo in photos" emit-last-repeater-element>
+                    <a class="added-img" ng-href="#/{{::photo.id}}">
+                        <img ng-src="{{::photo.url_m}}">
+                    </a>
+                </figure>
+            </div>
+            <div data-ng-if="!loading && photos.length === 0" layout="row" layout-align="center center">
+                <h3>
+                    Sorry! No Images found for this location.
+                </h3>
+            </div>
+        </md-content>
+    </div>
+
+    <div class="modal photoModal" id="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" ng-show="currentPhoto">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">{{currentPhoto.title}}</h4>
+                </div>
+                <div class="modal-body">
+                <div class="prev">
+                    <a href="" ng-click="selectPhoto(prevPhoto.id)" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-chevron-left"></span></a>
+                    </div>
+                    <div class="detailedPhoto">
+                        <img ng-src="{{currentPhotoSrc}}">
+                    </div>
+                    <div class="next">
+                        <a href="" ng-click="selectPhoto(nextPhoto.id)" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-chevron-right"></span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>My AngularJS App</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Angular Material style sheet -->
+  <link rel="stylesheet" href="bower_components/angular-material/angular-material.min.css">
+  <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
+  <link rel="stylesheet" href="app.css">
+  <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+  <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCqWpaDQeCYiI6g2PVqHAySLA7m5MC-pnk"></script>
+</head>
+<body ng-cloak>
+  <!--<ul class="menu">
+    <li><a href="#!/home">Home</a></li>
+  </ul>-->
+
+  <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+  <![endif]-->
+  
+  <app-header></app-header>
+  <div ng-view></div>
+  <script src="bower_components/packery/dist/packery.pkgd.js"></script>
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-route/angular-route.min.js"></script>
+  <script src="bower_components/angular-animate/angular-animate.min.js"></script>
+  <script src="bower_components/angular-aria/angular-aria.min.js"></script>
+  <script src="bower_components/angular-messages/angular-messages.min.js"></script>
+  <script src="bower_components/js-md5/build/md5.min.js"></script>
+  <script src="bower_components/ngmap/build/scripts/ng-map.min.js"></script>
+  <script src="bower_components/imagesloaded/imagesloaded.pkgd.js"></script>
+
+  <!-- Angular Material Library -->
+  <script src="bower_components/angular-material/angular-material.min.js"></script>
+
+  <script src="app.js"></script>
+  <script src="home/home.js"></script>
+  <script src="mapView/mapView.js"></script>
+  <script src="components/header/header.js"></script>
+  <script src="components/common/packery.js"></script>
+  <script src="components/common/pagination.js"></script>
+  <script src="components/common/last-element-repeat-finished.js"></script>
+  <script src="components/common/utils.js"></script>
+  <script src="components/flickr/flickr.js"></script>
+</body>
+</html>
