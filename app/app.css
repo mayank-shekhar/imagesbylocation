@@ -8,17 +8,18 @@
   height: 350px;
   margin: 0 auto;
 }
-
-.added-img > img {
-  max-width: 100%;
-}
-
 figure {
   margin: 0;
   width: 10%;
 }
 .photos-list {
   overflow: hidden;
+}
+.text-center {
+  text-align: center;
+}
+.img-responsive {
+  max-width: 100%;
 }
 
 @media only screen and (max-width: 992px) {
@@ -35,8 +36,4 @@ figure {
   figure {
     width: 95%;
   }
-}
-
-.text-center {
-  text-align: center;
 }

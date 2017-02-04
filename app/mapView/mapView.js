@@ -56,32 +56,43 @@ angular.module('myApp.mapView', ['ngRoute'])
             console.log('Failed: ' + err);
             $scope.loading = false;
         });
-    }
-    $scope.selectPhoto = function(id){
-        $('.photoModal').modal('hide');
-        console.log('redirect: ' + id);
-        $location.path( '/' + String(id) );
-    }
-
-    $scope.isModalOpened = function(){
-        console.log($('.photoModal').hasClass('in'));
-    }
-
-    $scope.loading = true;
-
-    $scope.openModal = function(){
-        var self = this;
-        $('.photoModal').modal('show');
-        if($scope.modalOpened) return;
-
-
-        $('.photoModal').modal('show');
-        $('.photoModal').on('hide.bs.modal', function (e) {
-            $scope.modalOpened = false;
-            $location.path('/');
-        });
-        $scope.modalOpened = true;
     };
+
+    $scope.openImage = function(url, ev) {
+        $mdDialog.show({
+            controller: DialogController,
+            template: 
+                '<md-dialog aria-label="Image Dialog">' +
+                '   <md-dialog-content>'+
+                '       <img class="img-responsive" data-ng-src="{{url}}" />'+
+                '   </md-dialog-content>' +
+                '   <md-dialog-actions>' +
+                '       <md-button ng-click="closeDialog()" class="md-primary">' +
+                '           Close' +
+                '       </md-button>' +
+                '   </md-dialog-actions>' +
+                '</md-dialog>',
+            parent: angular.element(document.body),
+            targetEvent: ev,
+            clickOutsideToClose: true,
+            fullscreen: $scope.customFullscreen,
+            locals: {
+                url: url
+            }
+        })
+        .then(function(answer) {
+            $scope.status = 'You said the information was "' + answer + '".';
+        }, function() {
+            $scope.status = 'You cancelled the dialog.';
+        });
+        function DialogController($scope, $mdDialog, url) {
+            $scope.url = url;
+            $scope.closeDialog = function() {
+                $mdDialog.hide();
+            }
+        }
+    }
+    $scope.loading = true;
 
     $scope.map = {
         lat: -999,
